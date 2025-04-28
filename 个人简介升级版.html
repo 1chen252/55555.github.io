@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            margin: 20px;
+            background-color: #fffaf0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .resume {
+            width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            border: 1px solid #f5e6c8;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #f0c14b;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-top: 20px;
+            border: 1px solid #f5e6c8;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .section-title {
+            background-color: #fff3e0;
+            padding: 12px;
+            font-weight: bold;
+            color: #2c3e50;
+            border-bottom: 1px solid #f5e6c8;
+            position: relative;
+            transition: all 0.5s ease;
+            padding-left: 20px;
+        }
+        .section-title:hover {
+            text-align: center;
+            transform: translateX(calc(50% - 50px));
+            background-color: #ffe0b2;
+        }
+        .section-title .icon {
+            transform: scale(1.2);
+            margin-right: 10px;
+        }
+        .section-content {
+            padding: 15px;
+        }
+        .photo-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .photo-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .photo {
+            width: 120px;
+            height: 160px;
+            object-fit: cover;
+            border: 1px solid #f5e6c8;
+        }
+        .info-column {
+            flex-grow: 1;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .info-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .info-label {
+            width: 80px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .info-value {
+            flex-grow: 1;
+        }
+        .icon {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 5px;
+            transition: all 0.3s ease;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+        .radio-group, .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .radio-option, .checkbox-option {
+            display: flex;
+            align-items: center;
+        }
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        fieldset {
+            border: 1px solid #f5e6c8;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 0;
+            width: 100%;
+        }
+        legend {
+            padding: 0 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .submit-btn {
+            display: block;
+            width: 150px;
+            margin: 20px auto 0;
+            padding: 12px;
+            background-color: #f0c14b;
+            color: #2c3e50;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #e2b33a;
+            transform: scale(1.05);
+        }
+        .experience-item {
+            margin-bottom: 15px;
+        }
+        .experience-date {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <h1>个人简历</h1>
+        
+        <form id="resumeForm">
+            <!-- 基本信息 -->
+            <div class="section">
+                <div class="section-title">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/user-male-circle.png" class="icon">
+                    基本信息
+                </div>
+                <div class="section-content">
+                    <div class="photo-container">
+                        <div class="photo-column">
+                            <img src="hai.jpg" alt="个人照片" class="photo">
+                            <input type="file" accept="image/*" style="width: 120px; margin-top: 10px;">
+                        </div>
+                        <div class="info-column">
+                            <div class="info-grid">
+                                <div class="info-row">
+                                    <div class="info-label">姓名</div>
+                                    <div class="info-value"><input type="text" value="陈昊妍" maxlength="20" required></div>
+                                </div>
+                                <div class="info-row">
+                                    <div class="info-label">性别</div>
+                                    <div class="info-value">
+                                        <fieldset>
+                                            <div class="radio-group">
+                                                <div class="radio-option">
+                                                    <input type="radio" id="male" name="gender" value="男">
+                                                    <label for="male">男</label>
+                                                </div>
+                                                <div class="radio-option">
+                                                    <input type="radio" id="female" name="gender" value="女" checked>
+                                                    <label for="female">女</label>
+                                                </div>
+                                                <div class="radio-option">
+                                                    <input type="radio" id="other" name="gender" value="其他">
+                                                    <label for="other">其他</label>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="info-row">
+                                    <div class="info-label">出生日期</div>
+                                    <div class="info-value"><input type="date" value="2006-09-30" required></div>
+                                </div>
+                                <div class="info-row">
+                                    <div class="info-label">籍贯</div>
+                                    <div class="info-value"><input type="text" value="江西樟树" maxlength="50" required></div>
+                                </div>
+                                <div class="info-row">
+                                    <div class="info-label">民族</div>
+                                    <div class="info-value"><input type="text" value="汉族" maxlength="20" required></div>
+                                </div>
+                                <div class="info-row">
+                                    <div class="info-label">政治面貌</div>
+                                    <div class="info-value">
+                                        <select required>
+                                            <option value="群众" selected>群众</option>
+                                            <option value="共青团员">共青团员</option>
+                                            <option value="中共党员">中共党员</option>
+                                            <option value="民主党派">民主党派</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="info-row">
+                                    <div class="info-label">健康状况</div>
+                                    <div class="info-value">
+                                        <fieldset>
+                                            <div class="checkbox-group">
+                                                <div class="checkbox-option">
+                                                    <input type="checkbox" id="health1" checked>
+                                                    <label for="health1">良好</label>
+                                                </div>
+                                                <div class="checkbox-option">
+                                                    <input type="checkbox" id="health2">
+                                                    <label for="health2">一般</label>
+                                                </div>
+                                                <div class="checkbox-option">
+                                                    <input type="checkbox" id="health3">
+                                                    <label for="health3">有疾病</label>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="info-row">
+                                    <div class="info-label">身高</div>
+                                    <div class="info-value" style="display: flex; align-items: center;">
+                                        <input type="number" value="165" min="100" max="250" required style="width: 80px;">
+                                        <span style="margin-left: 5px;">cm</span>
+                                    </div>
+                                </div>
+                                <div class="info-row">
+                                    <div class="info-label">联系电话</div>
+                                    <div class="info-value"><input type="tel" value="18103069945" maxlength="11" pattern="[0-9]{11}" required></div>
+                                </div>
+                                <div class="info-row">
+                                    <div class="info-label">电子邮箱</div>
+                                    <div class="info-value"><input type="email" value="2967945573@qq.com" maxlength="50" required></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 教育背景 -->
+            <div class="section">
+                <div class="section-title">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/graduation-cap.png" class="icon">
+                    教育背景
+                </div>
+                <div class="section-content">
+                    <div class="info-row" style="margin-bottom: 15px;">
+                        <div class="info-label">毕业院校</div>
+                        <div class="info-value">
+                            <select style="width:100%" required>
+                                <option value="鲁东大学" selected>鲁东大学</option>
+                                <option value="清华大学">清华大学</option>
+                                <option value="北京大学">北京大学</option>
+                                <option value="其他">其他</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="info-row" style="margin-bottom: 15px;">
+                        <div class="info-label">专业</div>
+                        <div class="info-value"><input type="text" value="软件工程" maxlength="50" required></div>
+                    </div>
+                    <div class="info-row" style="margin-bottom: 15px;">
+                        <div class="info-label">学历</div>
+                        <div class="info-value">
+                            <select required>
+                                <option value="在校本科生" selected>在校本科生</option>
+                                <option value="专科">专科</option>
+                                <option value="本科">本科</option>
+                                <option value="硕士">硕士</option>
+                                <option value="博士">博士</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="info-row" style="margin-bottom: 15px;">
+                        <div class="info-label">学位</div>
+                        <div class="info-value"><input type="text" value="工学" maxlength="20" required></div>
+                    </div>
+                    <div class="info-row" style="margin-bottom: 15px;">
+                        <div class="info-label">毕业时间</div>
+                        <div class="info-value"><input type="month" value="2028-06" required></div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">GPA</div>
+                        <div class="info-value"><input type="text" value="待定" maxlength="10"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 工作经历 -->
+            <div class="section">
+                <div class="section-title">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/briefcase.png" class="icon">
+                    工作经历
+                </div>
+                <div class="section-content">
+                    <div class="experience-item">
+                        <div class="experience-date">2018.07-至今</div>
+                        <input type="text" value="阿里巴巴集团 - 高级软件工程师" maxlength="100" required style="margin-bottom: 10px;">
+                        <textarea required>负责电商平台后端开发，主导了多个核心模块的设计与实现</textarea>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-date">2016.06-2018.06</div>
+                        <input type="text" value="腾讯科技有限公司 - 软件开发工程师" maxlength="100" required style="margin-bottom: 10px;">
+                        <textarea required>参与微信支付系统的开发与维护</textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 个人技能 -->
+            <div class="section">
+                <div class="section-title">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/star--v1.png" class="icon">
+                    个人技能
+                </div>
+                <div class="section-content">
+                    <div class="info-row" style="margin-bottom: 15px;">
+                        <div class="info-label">专业技能</div>
+                        <div class="info-value">
+                            <textarea required>精通Java、Python、C++等编程语言
+熟悉Spring Boot、Django等开发框架
+熟练使用MySQL、MongoDB等数据库
+了解大数据处理技术如Hadoop、Spark</textarea>
+                        </div>
+                    </div>
+                    <div class="info-row" style="margin-bottom: 15px;">
+                        <div class="info-label">语言能力</div>
+                        <div class="info-value">
+                            <textarea required>英语CET-6，具备良好的听说读写能力
+日语N2水平</textarea>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">兴趣爱好</div>
+                        <div class="info-value"><input type="text" value="编程、阅读、游泳、摄影、旅行" maxlength="100" required></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 获奖情况 -->
+            <div class="section">
+                <div class="section-title">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/trophy.png" class="icon">
+                    获奖情况
+                </div>
+                <div class="section-content">
+                    <div class="info-row" style="margin-bottom: 15px;">
+                        <div class="info-label">2019年</div>
+                        <div class="info-value"><input type="text" value="阿里巴巴年度优秀员工" maxlength="100"></div>
+                    </div>
+                    <div class="info-row" style="margin-bottom: 15px;">
+                        <div class="info-label">2017年</div>
+                        <div class="info-value"><input type="text" value="腾讯技术创新奖" maxlength="100"></div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">2015年</div>
+                        <div class="info-value"><input type="text" value="全国大学生程序设计竞赛一等奖" maxlength="100"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 自我评价 -->
+            <div class="section">
+                <div class="section-title">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/edit.png" class="icon">
+                    自我评价
+                </div>
+                <div class="section-content">
+                    <textarea required style="width: 100%;">本人性格开朗、稳重、有活力，待人热情、真诚。工作认真负责，积极主动，能吃苦耐劳。有较强的组织能力、实际动手能力和团体协作精神，能迅速的适应各种环境，并融合其中。在校期间学习认真，工作负责，积极配合老师完成工作任务，并多次组织参加社会实践活动，在自己能力和素质上都有了进一步的提高，相信自己能够适应这个社会，为我们的社会多做贡献。
+
+在专业学习方面，我系统学习了软件工程的相关课程，掌握了扎实的专业基础知识，具备较强的编程能力和系统设计能力。通过参与多个实际项目，积累了丰富的开发经验，能够独立完成软件系统的设计与实现。在工作中，我注重团队合作，善于沟通协调，能够快速融入团队并发挥自己的作用。同时，我始终保持学习的热情，关注行业最新技术动态，不断提升自己的专业能力。
+
+未来，我希望能够在技术领域继续深耕，将所学知识应用于实际工作中，为公司创造价值的同时实现个人职业发展目标。</textarea>
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-btn">提交简历</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('resumeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('简历提交成功！感谢您的填写。');
+        });
+    </script>
+</body>
+</html>
